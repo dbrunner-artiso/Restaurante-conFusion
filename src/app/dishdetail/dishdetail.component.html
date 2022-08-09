@@ -7,11 +7,33 @@
     fxLayoutGap.xs="0">
 
   <div fxFlex="40">
-    <p>Display the details of the Dish here</p>
+    <mat-card *ngIf="dish">
+      <p><b>{{dish.name | uppercase }}</b></p>
+      <img src={{dish.image}} height="300px"/>
+
+      <mat-card-content>
+        <p>{{dish.description}}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>LIKE</button>
+        <button mat-button>SHARE</button>
+      </mat-card-actions>
+    </mat-card>
   </div>
 
   <div fxFlex="40">
-    <p>Display the list of comments here</p>
+    <mat-card *ngIf="dish">
+      <p><b>Comments</b></p>
+      <mat-card-content>
+        <div *ngFor="let d of dish.comments">
+          <div>{{d.comment}}</div>
+          <div>{{d.rating}} Stars</div>
+          <div>-- {{d.author}} {{d.date | date}}</div>
+          <div> </div>
+        </div>
+      </mat-card-content>
+
+    </mat-card>
   </div>
 
 </div>

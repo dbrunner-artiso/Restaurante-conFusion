@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ActivatedRoute } from '@angular/router';
 import { Leader } from '../shared/leader';
 import { LeaderService } from '../services/leader.service';
 import { Location } from '@angular/common';

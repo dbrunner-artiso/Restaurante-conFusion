@@ -32,16 +32,58 @@
   <div fxFlex="40">
     <mat-card>
       <p><b>Comments</b></p>
-      <mat-card-content>
+      <mat-card-content *ngIf="dish">
         <div *ngFor="let d of dish.comments">
           <div>{{d.comment}}</div>
           <div>{{d.rating}} Stars</div>
           <div>-- {{d.author}} {{d.date | date}}</div>
           <div> </div>
         </div>
+
+        <div *ngIf="!feedbackForm.invalid">
+          <div>{{feedbackForm.value.comment}}</div>
+          <div>{{feedbackForm.value.rating}} Stars</div>
+          <div>-- {{feedbackForm.value.author}} {{feedbackForm.value.date | date}}</div>
+          <div> </div>
+        </div>
+
       </mat-card-content>
 
+
+      <div *ngIf="dish">
+        <h3>Send us your Comment</h3>
+
+         <!-- <p>{{ feedbackForm.value | json }} {{ feedbackForm.status | json }}</p> -->
+        <form novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+          <p>
+            <mat-form-field class="full-width">
+              <input matInput formControlName="author" placeholder="your name" type="text" required>
+              <mat-error *ngIf="formErrors.author">
+                {{ formErrors.author }}
+              </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-slider min="1" max="5" step="1" showTickMarks discrete formControlName="rating" thumbLabel tickInterval="1">
+              <input matSliderThumb>
+            </mat-slider>
+            <br>
+            <mat-form-field class="full-width">
+              <textarea matInput formControlName="comment" placeholder="Your feedback" rows=12 required></textarea>
+              <mat-error *ngIf="formErrors.comment">
+                {{ formErrors.comment }}
+              </mat-error>
+            </mat-form-field>
+          </p>
+
+        <button type="submit" mat-button class="background-primary text-floral-white"
+        [disabled]="!feedbackForm.valid">Submit</button>
+        </form>
+      </div>
+
     </mat-card>
+
+
+
     <div [hidden]="dish">
       <mat-spinner></mat-spinner>
       <h4>Loading… Please wait</h4>

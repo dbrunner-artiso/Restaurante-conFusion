@@ -32,6 +32,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MenuComponent } from './menu/menu.component';
 import { NgModule } from '@angular/core';
+import { ProcessHTTPMsgService } from './services/process-httpmsg.service';
 import { PromotionService } from './services/promotion.service';
 import { baseURL } from './shared/baseurl';
 
@@ -74,6 +75,7 @@ import { baseURL } from './shared/baseurl';
     DishService,
     PromotionService,
     LeaderService,
+    ProcessHTTPMsgService,
     { provide: 'BaseURL', useValue: baseURL }
   ],
   entryComponents: [

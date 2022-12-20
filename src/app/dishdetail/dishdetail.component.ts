@@ -7,7 +7,7 @@ import { Dish } from '../shared/dish';
 import { DishService } from '../services/dish.service';
 import { Feedback } from '../shared/feedback';
 import { Location } from '@angular/common';
-import { delay, switchMap } from 'rxjs/operators';
+import {  switchMap } from 'rxjs/operators';
 
 import { trigger, state , style, animate, transition} from '@angular/animations';
 
@@ -17,15 +17,15 @@ import { trigger, state , style, animate, transition} from '@angular/animations'
   styleUrls: ['./dishdetail.component.scss'],
   animations: [
     trigger('visibility', [
-      state('shown', style({
-        transform: 'scale(1.0)',
-        opacity: 1
-      })),
-      state('hidden', style({
-        transform: 'scale(0.5)',
-        opacity: 0
-      })),
-      transition('* => *', animate('0.5s ease-in-out'))
+        state('shown', style({
+            transform: 'scale(1.0)',
+            opacity: 1
+        })),
+        state('hidden', style({
+            transform: 'scale(0.3)',
+            opacity: 0.1
+        })),
+        transition('* => *', animate('0.5s ease-in-out'))
     ])
   ]
 })
@@ -41,7 +41,7 @@ export class DishdetailComponent implements OnInit {
     feedback: Feedback;
     @ViewChild('fform') feedbackFormDirective;
 
-    visibility = 'hidden';
+    public visibility = 'shown';
 
     formErrors = {
         'author': '',
@@ -74,6 +74,7 @@ export class DishdetailComponent implements OnInit {
         .pipe(switchMap((params: Params)=> {
            this.visibility= 'hidden';
            return this.dishService.getDish(params['id']);
+
           }))
         .subscribe(
           dish => {

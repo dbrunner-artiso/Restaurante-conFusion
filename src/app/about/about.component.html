@@ -59,7 +59,7 @@
     <table mat-table *ngIf="leaders" [@expand]>
         <ng-container *ngFor="let item of leaders">
           <tr>
-            <td mat-cell><img style="border-radius: 50%; " src={{item.image}}></td>
+            <td mat-cell><img style="border-radius: 50%;" src="{{BaseURL + item.image}}" alt=""></td>
             <td mat-cell>
               <div>{{item.name}} {{item.abbr}}</div>
               <div>{{item.designation}}</div>
@@ -73,5 +73,15 @@
         <mat-spinner></mat-spinner>
         <h4>Loading… Please wait</h4>
       </div>
+  </div>
+
+  <div [hidden]="leaders">
+    <mat-spinner></mat-spinner>
+    <h4>Loading… Please wait</h4>
+  </div>
+
+  <div fxFlex *ngIf="leaderErrMess">
+    <h2>Error</h2>
+    <h4>{{leaderErrMess}}</h4>
   </div>
 </div>

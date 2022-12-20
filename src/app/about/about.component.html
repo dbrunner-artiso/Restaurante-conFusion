@@ -56,7 +56,7 @@
 
   <div fxFlex>
     <h2>Corporate Leadership</h2>
-    <table mat-table *ngIf="leaders">
+    <table mat-table *ngIf="leaders" [@expand]>
         <ng-container *ngFor="let item of leaders">
           <tr>
             <td mat-cell><img style="border-radius: 50%; " src={{item.image}}></td>

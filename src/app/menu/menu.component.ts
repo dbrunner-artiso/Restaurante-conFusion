@@ -20,14 +20,14 @@ import { expand, flyInOut } from '../animations/app.animation';
 export class MenuComponent implements OnInit {
 
   dishes: Dish[];
-  errMsg: string;
+  errMess: string;
 
   constructor(private dishService: DishService, @Inject('BaseURL') public BaseURL: string) { }
 
   ngOnInit() {
     this.dishService.getDishes().subscribe((dishes) =>
       this.dishes = dishes,
-      errmess => this.errMsg = errmess
+      errmess => this.errMess = errmess
     );
   }
 }

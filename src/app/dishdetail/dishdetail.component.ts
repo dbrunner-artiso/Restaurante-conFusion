@@ -120,15 +120,12 @@ export class DishdetailComponent implements OnInit {
 
     onSubmit() {
       this.feedback = this.feedbackForm.value;
-      //console.log(this.feedback);
 
       const comment = new Comment();
       comment.author = this.feedbackForm.value.author;
       comment.rating = this.feedbackForm.value.rating;
       comment.comment = this.feedbackForm.value.comment;
       comment.date = new Date().toISOString();
-
-      //this.dish.comments.push(comment);
 
       this.dishcopy.comments.push(comment);
       this.dishService.putDish(this.dishcopy)

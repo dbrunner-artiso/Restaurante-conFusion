@@ -1,0 +1,5 @@
+Je in einem extra Terminal aufrufen
+
+webdriver-manager start
+ng service
+protractor e2e\protractor.conf.js
